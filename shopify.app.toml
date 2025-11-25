@@ -37,6 +37,6 @@ api_version = "2026-01"
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
 # Scopes necesarios para los webhooks suscritos
-scopes = "write_products,read_orders,read_customers,read_inventory"
+scopes = "read_products,write_products,read_orders,read_customers,read_inventory"
 [auth]
 redirect_urls = [ "https://conectorb.cashcolombia.com/api/auth" ]
