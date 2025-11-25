@@ -1,0 +1,43 @@
+﻿# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+client_id = "07267e761d6299783474cd916a9234e2"
+name = "zonabarber-cashconector"
+application_url = "https://conectorb.cashcolombia.com"
+embedded = true
+[build]
+automatically_update_urls_on_dev = true
+include_config_on_deploy = true
+[webhooks]
+api_version = "2026-01"
+  # Webhook genérico - todos los eventos de productos, órdenes, etc. van a la misma ruta
+  [[webhooks.subscriptions]]
+  topics = [
+    "products/create",
+    "products/update",
+    "products/delete",
+    "orders/create",
+    "orders/updated",
+    "orders/paid",
+    "orders/cancelled",
+    "orders/fulfilled",
+    "orders/partially_fulfilled",
+    "inventory_levels/update",
+    "customers/create",
+    "customers/update",
+    "collections/create",
+    "collections/update",
+    "collections/delete"
+  ]
+  uri = "/webhooks/forward"
+  # Mantener webhooks específicos de la app
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "/webhooks/app/scopes_update"
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+# Scopes necesarios para los webhooks suscritos
+scopes = "write_products,read_orders,read_customers,read_inventory"
+[auth]
+redirect_urls = [ "https://conectorb.cashcolombia.com/api/auth" ]
